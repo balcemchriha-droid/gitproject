@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="panier.css">
     <title>My Shopping Cart</title>
 </head>
 
@@ -15,29 +15,81 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="panier.html">My Cart</a></li>
             </ul>
+
+            <button id="theme-toggle" aria-label="Switch to dark mode">
+                Dark Mode
+            </button>
         </nav>
     </header>
 
-    <main>
+    <main class="cart-main">
+
         <h1>My Shopping Cart</h1>
 
-        <section>
-            <h2>Cart items</h2>
-
-            <p>Your cart is currently empty.</p>
-
-            <a href="index.html">Continue shopping</a>
+        <!-- Shown when the cart is empty -->
+        <section id="emptyCart" class="cart-empty">
+            <div class="cart-empty-icon">🛒</div>
+            <h2>Your cart is currently empty.</h2>
+            <p>Discover our delicious treats and add your favorites!</p>
+            <a href="products.html" class="cart-btn cart-btn-primary">
+                Continue shopping
+            </a>
         </section>
+
+        <!-- Shown when the cart has items -->
+        <div id="cartContent" class="cart-layout" hidden>
+
+            <section class="cart-items-section">
+                <h2>Cart items</h2>
+                <ul id="cartItems" class="cart-items"></ul>
+            </section>
+
+            <aside class="cart-summary">
+                <h2>Order Summary</h2>
+
+                <div class="cart-summary-row">
+                    <span>Items</span>
+                    <strong id="cartCount">0</strong>
+                </div>
+
+                <hr>
+
+                <div class="cart-summary-row cart-total-row">
+                    <span>Total</span>
+                    <strong id="cartTotal">0.00 TND</strong>
+                </div>
+
+                <button type="button" id="checkoutBtn"
+                    class="cart-btn cart-btn-primary cart-btn-full">
+                    Place Order
+                </button>
+
+                <button type="button" id="clearCartBtn"
+                    class="cart-btn cart-btn-outline cart-btn-full">
+                    Clear Cart
+                </button>
+
+                <a href="products.html" class="cart-continue">
+                    ← Continue shopping
+                </a>
+            </aside>
+
+        </div>
+
     </main>
 
     <footer>
-        <p>Copyright &copy; 2026</p>
+        <p>Copyright &copy; 2026 Sweet Delights</p>
     </footer>
 
+    <!-- cart.js (B4 functions) must load before panier.js (A5 interface) -->
+    <script src="cart.js"></script>
+    <script src="panier.js"></script>
     <script src="theme.js"></script>
 
 </body>
