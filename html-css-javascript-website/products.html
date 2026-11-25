@@ -41,10 +41,43 @@
             </div>
 
             <!-- Product catalogue -->
+
+            
+<section class="search-section">
+    <h2>Find Your Favorite Treat</h2>
+
+    <div class="search-controls">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for a product..."
+        >
+
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="pies">Pies</option>
+            <option value="cakes">Cakes</option>
+            <option value="tarts">Tarts</option>
+            <option value="cupcakes">Cupcakes</option>
+            <option value="cheesecakes">Cheesecakes</option>
+            <option value="macarons">Macarons</option>
+        </select>
+
+    </div>
+
+    <p id="resultsCount"></p>
+
+    <p id="noResults" style="display: none;">
+        No products found. Try another search!
+    </p>
+</section>
+
+
             <div class="products-container">
 
                 <!-- Product 1 -->
-                <article class="product-card">
+                <article class="product-card" data-category="pies">
                     <img src="images\apple-pie.png" alt="Homemade apple pie">
 
                     <div class="product-info">
@@ -62,7 +95,7 @@
                 </article>
 
                 <!-- Product 2 -->
-                <article class="product-card">
+                <article class="product-card" data-category="cakes">
                     <img src="images\chocolate-cake.jpg" alt="Chocolate cake">
 
                     <div class="product-info">
@@ -80,7 +113,7 @@
                 </article>
 
                 <!-- Product 3 -->
-                <article class="product-card">
+                <article class="product-card" data-category="tarts">
                     <img src="images\strawberry-tart.jpg" alt="Strawberry tart">
 
                     <div class="product-info">
@@ -98,7 +131,7 @@
                 </article>
 
                 <!-- Product 4 -->
-                <article class="product-card">
+                <article class="product-card" data-category="cupcakes">
                     <img src="images\vanilla-cupcakes.jpg" alt="Vanilla cupcakes">
 
                     <div class="product-info">
@@ -116,7 +149,7 @@
                 </article>
 
                 <!-- Product 5 -->
-                <article class="product-card">
+                <article class="product-card" data-category="cheesecakes">
                     <img src="images\cheesecake.jpg" alt="Classic cheesecake">
 
                     <div class="product-info">
@@ -134,7 +167,7 @@
                 </article>
 
                 <!-- Product 6 -->
-                <article class="product-card">
+                <article class="product-card" data-category="macarons">
                     <img src="images\macaroons.jpg" alt="Colorful macaroons">
 
                     <div class="product-info">
@@ -171,6 +204,7 @@
             &copy; 2026 Sweet Delights. All rights reserved.
         </p>
     </footer>
+    <script src="products.js"></script>
 
 </body>
 </html>
