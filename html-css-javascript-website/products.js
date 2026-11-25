@@ -1,4 +1,3 @@
-
 // ==========================================
 // SWEET DELIGHTS - PRODUCT FUNCTIONALITIES
 // A2: Search and Category Filter
@@ -31,8 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const relatedContainer = document.getElementById("relatedProducts");
     const galleryImage = document.getElementById("galleryImage");
 
-
-    // Check required elements
     if (!productsContainer || !searchInput || !categoryFilter ||
         !modal || !closeModalButton || !galleryImage) {
         console.error("Some required HTML elements are missing.");
@@ -44,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-
     // ======================================
     // 2. WISHLIST
     // ======================================
@@ -52,28 +48,32 @@ document.addEventListener("DOMContentLoaded", function () {
     let wishlist = [];
 
     try {
-        wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
+        wishlist = Array.isArray(saved)
+            ? saved.filter(id => typeof id === "string")
+            : [];
     } catch (error) {
         wishlist = [];
     }
 
     function toggleWishlist(productId) {
 
-        const id = Number(productId);
-
-        const index = wishlist.indexOf(id);
+        const index = wishlist.indexOf(productId);
 
         if (index === -1) {
-            wishlist.push(id);
+            wishlist.push(productId);
         } else {
             wishlist.splice(index, 1);
         }
 
-        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        try {
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        } catch (error) {
+            console.error("Could not save wishlist:", error);
+        }
 
         filterProducts();
     }
-
 
     // ======================================
     // 3. DYNAMIC PRODUCT DISPLAY
@@ -133,7 +133,6 @@ document.addEventListener("DOMContentLoaded", function () {
             price.classList.add("product-price");
             price.textContent = Number(product.price).toFixed(2) + " TND";
 
-
             // VIEW DETAILS BUTTON
             const detailsButton = document.createElement("button");
 
@@ -144,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
             detailsButton.addEventListener("click", function () {
                 showProductDetails(product.id);
             });
-
 
             // WISHLIST BUTTON
             const wishlistButton = document.createElement("button");
@@ -157,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
             wishlistButton.addEventListener("click", function () {
                 toggleWishlist(product.id);
             });
-
 
             // Assemble card
             info.appendChild(name);
@@ -179,11 +176,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // ======================================
+    // 4. UPDATE WISHLIST APPEARANCE
+    // ======================================
 
-    // Update wishlist appearance
     function updateWishlistButton(button, productId) {
 
-        const isFavorite = wishlist.includes(Number(productId));
+        const isFavorite = wishlist.includes(productId);
 
         button.textContent = isFavorite
             ? "♥ Added to Wishlist"
@@ -191,18 +190,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         button.classList.toggle("is-favorite", isFavorite);
 
-        button.setAttribute("aria-pressed", isFavorite);
+        button.setAttribute("aria-pressed", String(isFavorite));
     }
 
-
     // ======================================
-    // 4. SEARCH, FILTER AND SORT
+    // 5. SEARCH, FILTER AND SORT
     // ======================================
 
     function filterProducts() {
 
         const searchValue = searchInput.value.trim().toLowerCase();
-
         const selectedCategory = categoryFilter.value;
 
         let filteredProducts = productsData.filter(product => {
@@ -220,7 +217,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return (matchesName || matchesDescription) && matchesCategory;
 
         });
-
 
         // Sorting
         if (sortSelect) {
@@ -246,24 +242,21 @@ document.addEventListener("DOMContentLoaded", function () {
         displayProducts(filteredProducts);
     }
 
-
     searchInput.addEventListener("input", filterProducts);
-
     categoryFilter.addEventListener("change", filterProducts);
 
     if (sortSelect) {
         sortSelect.addEventListener("change", filterProducts);
     }
 
-
     // ======================================
-    // 5. PRODUCT DETAILS
+    // 6. PRODUCT DETAILS
     // ======================================
 
     function showProductDetails(productId) {
 
         const product = productsData.find(
-            item => Number(item.id) === Number(productId)
+            item => item.id === productId
         );
 
         if (!product) {
@@ -271,40 +264,26 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Fill product information
         modalName.textContent = product.name;
-
-        modalCategory.textContent =
-            product.category.toUpperCase();
-
-        modalDescription.textContent =
-            product.description;
-
+        modalCategory.textContent = product.category.toUpperCase();
+        modalDescription.textContent = product.description;
         modalPrice.textContent =
             Number(product.price).toFixed(2) + " TND";
 
-
-        // Load gallery
         openGallery(product);
-
-        // Load related products
         displayRelatedProducts(product);
 
-        // Open modal
         modal.classList.add("active");
-
         modal.setAttribute("aria-hidden", "false");
 
         document.body.style.overflow = "hidden";
     }
 
-
     // ======================================
-    // 6. PRODUCT IMAGE GALLERY
+    // 7. PRODUCT IMAGE GALLERY
     // ======================================
 
     let currentImages = [];
-
     let currentImageIndex = 0;
 
     function openGallery(product) {
@@ -317,10 +296,8 @@ document.addEventListener("DOMContentLoaded", function () {
         currentImageIndex = 0;
 
         galleryImage.src = currentImages[0];
-
         galleryImage.alt = product.name;
     }
-
 
     function changeImage(direction) {
 
@@ -341,13 +318,10 @@ document.addEventListener("DOMContentLoaded", function () {
         galleryImage.src = currentImages[currentImageIndex];
     }
 
-
-    // Allow HTML gallery buttons to call this function
     window.changeImage = changeImage;
 
-
     // ======================================
-    // 7. RELATED PRODUCTS
+    // 8. RELATED PRODUCTS
     // ======================================
 
     function displayRelatedProducts(product) {
@@ -358,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const relatedProducts = productsData.filter(item =>
             item.category === product.category &&
-            Number(item.id) !== Number(product.id)
+            item.id !== product.id
         );
 
         relatedContainer.innerHTML = "";
@@ -374,7 +348,6 @@ document.addEventListener("DOMContentLoaded", function () {
         relatedProducts.forEach(item => {
 
             const card = document.createElement("div");
-
             card.classList.add("related-card");
 
             const image = document.createElement("img");
@@ -403,40 +376,30 @@ document.addEventListener("DOMContentLoaded", function () {
             card.appendChild(button);
 
             relatedContainer.appendChild(card);
-
         });
     }
 
-
     // ======================================
-    // 8. CLOSE PRODUCT MODAL
+    // 9. CLOSE PRODUCT MODAL
     // ======================================
 
     function closeModal() {
 
         modal.classList.remove("active");
-
         modal.setAttribute("aria-hidden", "true");
 
         document.body.style.overflow = "";
     }
 
-
-    // Close with X button
     closeModalButton.addEventListener("click", closeModal);
 
-
-    // Close when clicking outside
     modal.addEventListener("click", function (event) {
 
         if (event.target === modal) {
             closeModal();
         }
-
     });
 
-
-    // Close with Escape key
     document.addEventListener("keydown", function (event) {
 
         if (
@@ -445,12 +408,10 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
             closeModal();
         }
-
     });
 
-
     // ======================================
-    // 9. INITIALIZE PRODUCTS
+    // 10. INITIALIZE PRODUCTS
     // ======================================
 
     displayProducts(productsData);
