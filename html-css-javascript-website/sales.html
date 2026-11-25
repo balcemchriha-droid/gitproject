@@ -1,128 +1,92 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Store | SynBio</title>
-
-    <link rel="stylesheet" href="site.css">
-    <link rel="stylesheet" href="sales.css">
+    <meta name="description" content="Shop Sweet Delights cakes, pastries, tarts, cupcakes and macarons.">
+    <title>Our Treats | Sweet Delights</title>
+    <link rel="stylesheet" href="bakery.css">
 </head>
-
 <body>
+<header class="site-header">
+    <a class="brand" href="index.html">Sweet <span>Delights</span><b>.</b></a>
+    <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" data-en="Home" data-fr="Accueil">Home</a>
+        <a href="service.html" data-en="Services" data-fr="Services">Services</a>
+        <a href="sales.html" aria-current="page" data-en="Our treats" data-fr="Nos douceurs">Our treats</a>
+        <a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a>
+    </nav>
+    <div class="header-tools">
+        <button id="theme-toggle" class="tool-button" type="button" aria-label="Toggle dark mode">🌙</button>
+        <button id="language-toggle" class="tool-button" type="button">FR 🇫🇷</button>
+        <a class="cart-link" href="panier.html">🛒 <span data-en="Cart" data-fr="Panier">Cart</span> <b id="cart-count">0</b></a>
+    </div>
+</header>
 
-    <!-- HEADER -->
-    <header class="sales-header">
-        <div class="logo">
-            <h2>SynBio<span>.</span></h2>
-        </div>
-
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="service.html">Services</a>
-            <a href="sales.html" class="active">Shop</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-
-        <div class="header-actions">
-            <button id="theme-toggle">🌙</button>
-            <button id="language-toggle">FR 🇫🇷</button>
-            <a href="panier.html" class="cart-link">
-                🛒 Cart <span id="cart-count">0</span>
-            </a>
-        </div>
-    </header>
-
-
-    <!-- HERO SECTION -->
-    <section class="sales-hero">
-        <div class="hero-content">
-            <p class="hero-tag">DISCOVER OUR COLLECTION</p>
-
-            <h1>Find what you<br>really need.</h1>
-
-            <p>
-                Explore our collection of quality products,
-                carefully selected to make your everyday life better.
-            </p>
-
-            <a href="#products" class="shop-btn">Shop Now →</a>
-        </div>
-
-        <div class="hero-decoration">
-            <span>✨</span>
-            <div class="hero-circle"></div>
-        </div>
+<main>
+    <section class="page-hero shop-hero">
+        <p class="eyebrow" data-en="A little treat goes a long way" data-fr="Une petite douceur fait toute la différence">A little treat goes a long way</p>
+        <h1 data-en="Freshly baked favourites." data-fr="Vos douceurs préférées, fraîchement préparées.">Freshly baked favourites.</h1>
+        <p data-en="Browse our selection of cakes, pastries and sweet treats. Find your favourite and add it to your basket."
+           data-fr="Parcourez notre sélection de gâteaux, viennoiseries et douceurs. Trouvez votre préférée et ajoutez-la au panier.">
+            Browse our selection of cakes, pastries and sweet treats. Find your favourite and add it to your basket.
+        </p>
     </section>
 
-
-    <!-- PRODUCTS SECTION -->
-    <main class="products-section" id="products">
-
-        <div class="section-heading">
-            <div>
-                <p class="section-tag">OUR COLLECTION</p>
-                <h2>Explore Products</h2>
-            </div>
-
-            <p class="product-count" id="product-count">
-                6 products
-            </p>
+    <section class="catalogue-section" id="catalogue">
+        <div class="catalogue-heading">
+            <div><p class="eyebrow" data-en="THE SWEET COUNTER" data-fr="LE COMPTOIR DES DOUCEURS">THE SWEET COUNTER</p><h2 data-en="Find your favourite" data-fr="Trouvez votre préférée">Find your favourite</h2></div>
+            <a class="custom-order-link" href="service.html" data-en="Want a custom cake? →" data-fr="Envie d'un gâteau personnalisé ? →">Want a custom cake? →</a>
         </div>
 
-
-        <!-- SEARCH AND FILTERS -->
         <div class="shop-controls">
-
-            <input
-                type="search"
-                id="product-search"
-                placeholder="Search for a product..."
-            >
-
-            <div class="category-filters">
-                <button class="filter-btn active" data-category="all">
-                    All
-                </button>
-
-                <button class="filter-btn" data-category="electronics">
-                    Electronics
-                </button>
-
-                <button class="filter-btn" data-category="accessories">
-                    Accessories
-                </button>
-
-                <button class="filter-btn" data-category="office">
-                    Office
-                </button>
-            </div>
-
+            <label class="search-label"><span data-en="Search products" data-fr="Rechercher">Search products</span><input id="searchInput" type="search" placeholder="Try “tart” or “chocolate”" aria-label="Search products"></label>
+            <label><span data-en="Category" data-fr="Catégorie">Category</span>
+                <select id="categoryFilter" aria-label="Filter by category">
+                    <option value="all">All categories</option>
+                    <option value="pies">Pies</option><option value="cakes">Cakes</option><option value="tarts">Tarts</option>
+                    <option value="cupcakes">Cupcakes</option><option value="cheesecakes">Cheesecakes</option>
+                    <option value="macarons">Macarons</option><option value="viennoiseries">Viennoiseries</option>
+                </select>
+            </label>
+            <label><span data-en="Sort by" data-fr="Trier par">Sort by</span>
+                <select id="sortProducts" aria-label="Sort products">
+                    <option value="default">Featured</option><option value="price-low">Price: low to high</option>
+                    <option value="price-high">Price: high to low</option><option value="name">Name: A to Z</option>
+                </select>
+            </label>
         </div>
 
+        <div class="results-line"><p id="resultsCount" aria-live="polite"></p><p id="noResults" hidden>No treats found. Try another search.</p></div>
+        <div class="products-grid" id="productsContainer"></div>
+    </section>
+</main>
 
-        <!-- PRODUCT GRID -->
-        <div class="products-grid" id="products-grid">
-
-            <!-- Products will be generated using JavaScript -->
-
+<div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalName">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel">
+        <button type="button" class="modal-close" id="closeModal" aria-label="Close details">×</button>
+        <div class="modal-product-visual" id="modalVisual" aria-hidden="true">🍰</div>
+        <div class="modal-product-info">
+            <p class="eyebrow" id="modalCategory"></p>
+            <h2 id="modalName"></h2>
+            <p id="modalDescription"></p>
+            <strong class="modal-price" id="modalPrice"></strong>
+            <button type="button" class="button button-dark" id="modalAddToCart">Add to basket</button>
         </div>
+        <section class="related-section"><h3 data-en="You may also like" data-fr="Vous aimerez aussi">You may also like</h3><div id="relatedProducts" class="related-grid"></div></section>
+    </div>
+</div>
 
-    </main>
+<footer class="site-footer">
+    <a class="brand brand-footer" href="index.html">Sweet <span>Delights</span><b>.</b></a>
+    <p data-en="A little sweetness, made with love." data-fr="Un peu de douceur, fait avec amour.">A little sweetness, made with love.</p>
+    <div class="footer-nav"><a href="index.html">Home</a><a href="service.html">Services</a><a href="sales.html">Shop</a><a href="contact.html">Contact</a></div>
+    <small>© 2026 Sweet Delights. <span data-en="All rights reserved." data-fr="Tous droits réservés.">All rights reserved.</span></small>
+</footer>
 
-
-    <!-- FOOTER -->
-    <footer class="sales-footer">
-        <h2>SynBio<span>.</span></h2>
-        <p>Quality products. Better everyday experiences.</p>
-        <p>© 2026 SynBio. All rights reserved.</p>
-    </footer>
-
-
-    <script src="theme.js"></script>
-    <script src="language.js"></script>
-    <script src="sales.js"></script>
-
+<script src="theme.js"></script>
+<script src="language.js"></script>
+<script src="sales.js"></script>
 </body>
 </html>
