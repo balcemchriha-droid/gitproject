@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +23,12 @@
                 <li><a href="services.html">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+
+            <button id="theme-toggle" aria-label="Switch to dark mode">
+                Dark Mode
+            </button>
+
+            <a href="panier.html">Panier</a>
         </nav>
     </header>
 
@@ -46,7 +51,25 @@
             </div>
 
 
-            <!-- A2: Search, Filter and Sort -->
+            <!-- Independent button: Customize your own sweet -->
+            <section class="custom-sweet-banner">
+
+                <div class="custom-sweet-text">
+                    <h2>Can't find what you're looking for?</h2>
+                    <p>
+                        Design your own dessert: choose the size, flavor,
+                        decorations and more!
+                    </p>
+                </div>
+
+                <a href="customize-sweet.html" class="custom-sweet-btn">
+                    🍰 Customize Your Sweet
+                </a>
+
+            </section>
+
+
+            <!-- Search, Filter and Sort -->
             <section class="search-section">
 
                 <h2>Find Your Favorite Treat</h2>
@@ -75,7 +98,7 @@
                         <option value="macarons">Macarons</option>
                     </select>
 
-                    <!-- A4: Sort Products -->
+                    <!-- Sort Products -->
                     <select
                         id="sortProducts"
                         aria-label="Sort products"
@@ -98,7 +121,7 @@
             </section>
 
 
-            <!-- A1 + A4: Dynamic Product Catalogue -->
+            <!-- Dynamic Product Catalogue -->
             <div
                 class="products-container"
                 id="productsContainer"
@@ -111,7 +134,7 @@
     </main>
 
 
-    <!-- A4: Product Details Modal -->
+    <!-- Product Details Modal -->
     <div
         id="productModal"
         class="product-modal"
@@ -134,7 +157,7 @@
             </button>
 
 
-            <!-- A4: Product Image Gallery -->
+            <!-- Product Image Gallery -->
             <div class="product-gallery">
 
                 <button
@@ -181,7 +204,7 @@
             </div>
 
 
-            <!-- A4: Related Products -->
+            <!-- Related Products -->
             <section class="related-section">
 
                 <h3>You May Also Like</h3>
@@ -223,8 +246,10 @@
     <!-- Product data must load first -->
     <script src="products-data.js"></script>
 
-    <!-- Product display, search, filter and A4 functions -->
+    <!-- Product display, search, filter and product functions -->
     <script src="products.js"></script>
+
+    <script src="theme.js"></script>
 
 </body>
 </html>
