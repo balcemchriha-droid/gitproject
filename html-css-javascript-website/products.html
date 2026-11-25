@@ -27,170 +27,182 @@
         </nav>
     </header>
 
+
     <!-- Main content -->
     <main class="products-main">
 
         <section class="products-section">
 
+            <!-- Introduction -->
             <div class="products-intro">
+
                 <h1>Our Products</h1>
+
                 <p>
                     Discover our delicious collection of homemade pastries,
                     cakes and sweet treats, freshly prepared with love.
                 </p>
-            </div>
-
-            <!-- Product catalogue -->
-
-            
-<section class="search-section">
-    <h2>Find Your Favorite Treat</h2>
-
-    <div class="search-controls">
-
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search for a product..."
-        >
-
-        <select id="categoryFilter">
-            <option value="all">All Categories</option>
-            <option value="pies">Pies</option>
-            <option value="cakes">Cakes</option>
-            <option value="tarts">Tarts</option>
-            <option value="cupcakes">Cupcakes</option>
-            <option value="cheesecakes">Cheesecakes</option>
-            <option value="macarons">Macarons</option>
-        </select>
-
-    </div>
-
-    <p id="resultsCount"></p>
-
-    <p id="noResults" style="display: none;">
-        No products found. Try another search!
-    </p>
-</section>
-
-
-            <div class="products-container">
-
-                <!-- Product 1 -->
-                <article class="product-card" data-category="pies">
-                    <img src="images\apple-pie.png" alt="Homemade apple pie">
-
-                    <div class="product-info">
-                        <h2>Apple Pie</h2>
-                        <p class="product-description">
-                            A delicious homemade pie filled with fresh apples
-                            and a touch of cinnamon.
-                        </p>
-
-                        <div class="product-bottom">
-                            <span class="product-price">18.00 TND</span>
-                            <button type="button">View Details</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 2 -->
-                <article class="product-card" data-category="cakes">
-                    <img src="images\chocolate-cake.jpg" alt="Chocolate cake">
-
-                    <div class="product-info">
-                        <h2>Chocolate Cake</h2>
-                        <p class="product-description">
-                            A rich and soft chocolate cake made with
-                            premium chocolate.
-                        </p>
-
-                        <div class="product-bottom">
-                            <span class="product-price">35.00 TND</span>
-                            <button type="button">View Details</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 3 -->
-                <article class="product-card" data-category="tarts">
-                    <img src="images\strawberry-tart.jpg" alt="Strawberry tart">
-
-                    <div class="product-info">
-                        <h2>Strawberry Tart</h2>
-                        <p class="product-description">
-                            A crispy tart filled with creamy custard
-                            and fresh strawberries.
-                        </p>
-
-                        <div class="product-bottom">
-                            <span class="product-price">22.00 TND</span>
-                            <button type="button">View Details</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 4 -->
-                <article class="product-card" data-category="cupcakes">
-                    <img src="images\vanilla-cupcakes.jpg" alt="Vanilla cupcakes">
-
-                    <div class="product-info">
-                        <h2>Vanilla Cupcakes</h2>
-                        <p class="product-description">
-                            Soft vanilla cupcakes topped with
-                            delicious homemade frosting.
-                        </p>
-
-                        <div class="product-bottom">
-                            <span class="product-price">15.00 TND</span>
-                            <button type="button">View Details</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 5 -->
-                <article class="product-card" data-category="cheesecakes">
-                    <img src="images\cheesecake.jpg" alt="Classic cheesecake">
-
-                    <div class="product-info">
-                        <h2>Classic Cheesecake</h2>
-                        <p class="product-description">
-                            A smooth and creamy cheesecake with
-                            a crunchy biscuit base.
-                        </p>
-
-                        <div class="product-bottom">
-                            <span class="product-price">28.00 TND</span>
-                            <button type="button">View Details</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 6 -->
-                <article class="product-card" data-category="macarons">
-                    <img src="images\macaroons.jpg" alt="Colorful macaroons">
-
-                    <div class="product-info">
-                        <h2>French Macarons</h2>
-                        <p class="product-description">
-                            Colorful French macarons with delicate
-                            shells and delicious fillings.
-                        </p>
-
-                        <div class="product-bottom">
-                            <span class="product-price">20.00 TND</span>
-                            <button type="button">View Details</button>
-                        </div>
-                    </div>
-                </article>
 
             </div>
+
+
+            <!-- A2: Search, Filter and Sort -->
+            <section class="search-section">
+
+                <h2>Find Your Favorite Treat</h2>
+
+                <div class="search-controls">
+
+                    <!-- Search -->
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search for a product..."
+                        aria-label="Search products"
+                    >
+
+                    <!-- Category Filter -->
+                    <select
+                        id="categoryFilter"
+                        aria-label="Filter products by category"
+                    >
+                        <option value="all">All Categories</option>
+                        <option value="pies">Pies</option>
+                        <option value="cakes">Cakes</option>
+                        <option value="tarts">Tarts</option>
+                        <option value="cupcakes">Cupcakes</option>
+                        <option value="cheesecakes">Cheesecakes</option>
+                        <option value="macarons">Macarons</option>
+                    </select>
+
+                    <!-- A4: Sort Products -->
+                    <select
+                        id="sortProducts"
+                        aria-label="Sort products"
+                    >
+                        <option value="default">Default Sorting</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+
+                </div>
+
+                <!-- Search results -->
+                <p id="resultsCount"></p>
+
+                <p id="noResults" style="display: none;">
+                    No products found. Try another search!
+                </p>
+
+            </section>
+
+
+            <!-- A1 + A4: Dynamic Product Catalogue -->
+            <div
+                class="products-container"
+                id="productsContainer"
+            >
+                <!-- Product cards generated by JavaScript -->
+            </div>
+
         </section>
 
     </main>
 
+
+    <!-- A4: Product Details Modal -->
+    <div
+        id="productModal"
+        class="product-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalName"
+        aria-hidden="true"
+    >
+
+        <div class="modal-content">
+
+            <!-- Close button -->
+            <button
+                type="button"
+                class="close-modal"
+                id="closeModal"
+                aria-label="Close product details"
+            >
+                &times;
+            </button>
+
+
+            <!-- A4: Product Image Gallery -->
+            <div class="product-gallery">
+
+                <button
+                    type="button"
+                    class="gallery-btn"
+                    onclick="changeImage(-1)"
+                    aria-label="Previous image"
+                >
+                    &#10094;
+                </button>
+
+                <img
+                    id="galleryImage"
+                    src=""
+                    alt="Product image"
+                >
+
+                <button
+                    type="button"
+                    class="gallery-btn"
+                    onclick="changeImage(1)"
+                    aria-label="Next image"
+                >
+                    &#10095;
+                </button>
+
+            </div>
+
+
+            <!-- Product information -->
+            <div class="modal-info">
+
+                <span
+                    id="modalCategory"
+                    class="modal-category"
+                ></span>
+
+                <h2 id="modalName"></h2>
+
+                <p id="modalDescription"></p>
+
+                <h3 id="modalPrice"></h3>
+
+            </div>
+
+
+            <!-- A4: Related Products -->
+            <section class="related-section">
+
+                <h3>You May Also Like</h3>
+
+                <div
+                    id="relatedProducts"
+                    class="related-products"
+                >
+                    <!-- Related products generated by JavaScript -->
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+
     <!-- Footer -->
     <footer>
+
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -203,7 +215,15 @@
         <p class="footer-text">
             &copy; 2026 Sweet Delights. All rights reserved.
         </p>
+
     </footer>
+
+
+    <!-- JavaScript files -->
+    <!-- Product data must load first -->
+    <script src="products-data.js"></script>
+
+    <!-- Product display, search, filter and A4 functions -->
     <script src="products.js"></script>
 
 </body>
