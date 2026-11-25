@@ -1,0 +1,74 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nos Services</h1>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="service.html">Services</a>
+            <a href="panier.html">Panier</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Découvrez nos services</h2>
+        <p>Choisissez le service qui correspond à vos besoins.</p>
+
+        <section class="services">
+
+            <article class="service-card">
+                <h3>Développement Web</h3>
+                <p>Création de sites web modernes et adaptés à vos besoins.</p>
+                <p class="price">À partir de 500 DT</p>
+                <button onclick="ajouterAuPanier('Développement Web', 500)">
+                    Ajouter au panier
+                </button>
+            </article>
+
+            <article class="service-card">
+                <h3>Design Graphique</h3>
+                <p>Création de logos, affiches et identités visuelles.</p>
+                <p class="price">À partir de 100 DT</p>
+                <button onclick="ajouterAuPanier('Design Graphique', 100)">
+                    Ajouter au panier
+                </button>
+            </article>
+
+            <article class="service-card">
+                <h3>Maintenance Informatique</h3>
+                <p>Installation, dépannage et maintenance de vos systèmes.</p>
+                <p class="price">À partir de 50 DT</p>
+                <button onclick="ajouterAuPanier('Maintenance Informatique', 50)">
+                    Ajouter au panier
+                </button>
+            </article>
+
+        </section>
+    </main>
+
+    <script>
+        function ajouterAuPanier(nom, prix) {
+            let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+            panier.push({
+                nom: nom,
+                prix: prix
+            });
+
+            localStorage.setItem("panier", JSON.stringify(panier));
+
+            alert("Service ajouté au panier !");
+        }
+    </script>
+
+</body>
+</html>
+```
